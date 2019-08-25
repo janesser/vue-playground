@@ -108,7 +108,9 @@ export default class ValidComponent extends Vue {
 
   accessValidatorParams() {
     console.log(this.$v.$params.username);
-    console.log(this.$v.username.$params);
+    if (this.$v.username) {
+      console.log(this.$v.username.$params);
+    }
   }
 
   accessGroups() {
@@ -120,7 +122,7 @@ export default class ValidComponent extends Vue {
   }
 
   hasDescription = false;
-  validations() {
+  get validations() { // FIXME catch up with: https://github.com/vuelidate/vuelidate/issues/175#issuecomment-520963432 
     if (!this.hasDescription) {
       return {
         name: {
@@ -138,8 +140,16 @@ export default class ValidComponent extends Vue {
       };
     }
   }
+
   get isRepoValid() {
     return !this.$v.$invalid;
+  }
+
+  // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34872#issuecomment-523373250
+  get isUsernameMissing():boolean {
+    if (this.$v.username) {
+      return this.$v.username.required;
+    } else return true;
   }
 }
 </script>
