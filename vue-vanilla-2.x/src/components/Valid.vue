@@ -157,7 +157,7 @@ export default class ValidComponent extends Vue {
 
   // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34872#issuecomment-523373250
   get isUsernameMissing():boolean {
-    if (this.$v.username) {
+    if (this.$v.username && this.$v.username.required) {
       return this.$v.username.required;
     } else return true;
   }

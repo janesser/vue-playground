@@ -1,7 +1,0 @@
-{
-    "name": "vue-playground3",
-    "devDependencies": {
-        "@vue/cli": "^5.0.8",
-        "yarn-audit-fix": "^10.1.0"
-    }
-}
